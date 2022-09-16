@@ -21,6 +21,8 @@ namespace ProductApps
     public partial class MainWindow : Window
     {
         Product cProduct;
+        Product dProduct;
+        const int charge = 25;
 
         public MainWindow()
         {
@@ -34,11 +36,14 @@ namespace ProductApps
                 cProduct = new Product(Convert.ToDecimal(priceTextBox.Text), Convert.ToInt16(quantityTextBox.Text));
                 cProduct.calTotalPayment();
                 totalPaymentTextBlock.Text = Convert.ToString(cProduct.TotalPayment);
+                decimal totalPaymenPlusDelivery = cProduct.TotalPayment + 25;
+                totalChargeTextBox.Text = Convert.ToString(totalPaymenPlusDelivery);
             }
             catch (FormatException)
             {
                 MessageBox.Show("Enter data again", "Data Entry Error");
             }
+          
         }
 
         private void clearButton_Click(object sender, RoutedEventArgs e)
